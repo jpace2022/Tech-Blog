@@ -83,14 +83,14 @@ router.get("/update-comment/:id", withAuth, async (req, res) => {
                 {
                     model: User,
                     attributes: ["name"],
-                }
-            ]
+                },
+            ],
             where: {
                 blog_id: clicked_comment.blog_id,
             },
         });
 
-        const commments = commentData.map((comment) => comment.get({ plain: true }));
+        const comments = commentData.map((comment) => comment.get({ plain: true }));
 
         const blog = blogData.get({ plain: true });
 
