@@ -17,39 +17,36 @@
               {{format_date comment.date_created}}</p>
           </div>
             {{#if (ifUser comment.user_id  ../logged_id)}}
+            {{#if (ifUser ../comment_id comment.id)}}
             <div class='col-md-4'>
                 <button
                 class='btn btn-sm btn-danger'
-                comment-id='{{comment.id}}'
+                comment-id='{{id}}'
                 blog-id='{{../id}}'
                 >DELETE</button>
                 <button
-                onclick="location.href='/update-comment/{{comment.id}}'"
-                class='btn btn-sm btn-info'
-                button-id='{{comment.id}}'
+                class='btn btn-sm btn-primary cancel-button'
+                cancel-id='{{id}}'
                 blog-id='{{../id}}'
-                >UPDATE</button>
+                >CANCEL</button>
+        <form class='form'>
+          <div class='form-group'>
+            <label for='comment-desc'>Update Comment:</label>
+            <textarea class='form-input'  id='comment-desc' name='comment-desc'>{{comment.description}}</textarea>
+          </div>
+          <div class='form-group'>
+            <button type='submit' class='btn btn-primary update-comment-form' blog-id='{{../id}}' update-id='{{comment.id}}'>UPDATE</button>
+          </div>
+        </form>
             </div>
+            {{/if}}
             {{/if}}
         </div>
       {{/each}}
       </div>
+<div class='row mt-4'>
     {{/if}}
-          <div class='row mt-4'>
-  <div class='col-md-6'>
-    <h3>Post a comment:</h3>
-
-    <form class='form new-comment-form' blog-id='{{id}}'>
-      <div class='form-group'>
-        <label for='comment-desc'>description:</label>
-        <textarea class='form-input'  id='comment-desc' name='comment-desc'></textarea>
-      </div>
-      <div class='form-group'>
-        <button type='submit' class='btn btn-primary'>CREATE</button>
-      </div>
-    </form>
-  </div>
-  {{else}}
+    {{else}}
     <p>
       {{#if comments.length}}
       <div class='comment-list'>
@@ -70,7 +67,6 @@
       {{/if}}
     </p>
   {{/if}}
-
 </div>
 
 <script src='/js/comment.js'></script>
