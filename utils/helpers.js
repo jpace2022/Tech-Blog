@@ -1,7 +1,8 @@
 module.exports = {
     format_date: (date) => {
-        return Date.toLocalDateString();
+        return date.toLocalDateString();
     },
+    
     ifUser: (userId, commentId) => {
         return userId == commentId;
     },
