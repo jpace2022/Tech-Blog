@@ -73,6 +73,6 @@ The following animation demonstrates the application functionality:
     For any questions or concerns, contact me at my email: pacej2022@gmail.com
 
 ## Image Link
-![Tech-Blog](#)
-![Tech-Blog](#)
+![Tech-Blog](https://github.com/jpace2022/Tech-Blog/blob/main/Assets/Login%20signup%20page.png?raw=true)
+![Tech-Blog](https://github.com/jpace2022/Tech-Blog/blob/main/Assets/Blog%20posts.png?raw=true)
 ![Tech-Blog](#)
