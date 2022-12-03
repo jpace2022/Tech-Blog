@@ -1,5 +1,3 @@
-const { doc } = require("prettier");
-
 const newFormHandler = async (event) => {
     event.preventDefault();
 
@@ -15,7 +13,7 @@ if (name && description) {
                 },
             });
         if(response.ok) {
-            document.location.replace("/blog/${blog_id}");
+            document.location.replace(`/blog/${blog_id}`);
         } else {
             alert ("Fail to create content.")
         }
@@ -25,7 +23,7 @@ if (name && description) {
  const cancelButtonHandler = async (event) => {
     event.preventDefault();
     if (event.target.hasAttribute("cancel-id")) {
-        document.location.replace("/dashboard")
+        document.location.replace(`/dashboard`)
     }
 };
 
@@ -37,7 +35,7 @@ const updateBlogHandler = async (event) => {
         const name = document.querySelector("#update-name").value.trim();
 
     if(description && name) {
-        const response = await fetch("/api/blogs/${id}", {
+        const response = await fetch(`/api/blogs/${id}`, {
             method: "PUT",
             body: JSON.stringify({ description, name }),
             header: {
@@ -45,7 +43,7 @@ const updateBlogHandler = async (event) => {
         },
     });
         if (response.ok) {  
-        document.location.replace("/dashboard");    
+        document.location.replace(`/dashboard`);    
       } else {   
         alert ("Fail to update content.")    
       }   
@@ -57,7 +55,7 @@ const updateBlogHandler = async (event) => {
 const delButtonHandler = async (event) => {
     if (event.target.hasAttribute("data-id")) {
         const id = event.target.getAttribute("data-id");
-        const response = await fetch("/api/blogs/${id}", {
+        const response = await fetch(`/api/blogs/${id}`, {
             method: "DELETE",
             body: JSON.stringify({ description }),
             headers: {
@@ -65,7 +63,7 @@ const delButtonHandler = async (event) => {
             },
         });
         if(response.ok) {
-            document.location.replace("/dashboard");
+            document.location.replace(`/dashboard`);
         } else {
             alert ("Fail to delete content.")
             

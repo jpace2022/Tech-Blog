@@ -12,7 +12,7 @@ const newFormHandler = async (event) => {
                 },
             });
             if(response.ok) {
-                document.location.replace("/blog/${blog_id}");
+                document.location.replace(`/blog/${blog_id}`);
             } else {
                 alert ("Fail to create content.")
             }
@@ -24,7 +24,7 @@ const delButtonHandler = async (event) => {
     event.preventDefault();
     if (event.target.hasAttribute("comment-id")) {
         const id = event.target.getAttribute("#comment-id");
-        const response = await fetch("/api/comment/${id}", {
+        const response = await fetch(`/api/comment/${id}`, {
             method: "DELETE",
         });
         if(response.ok) {    
@@ -39,7 +39,7 @@ const delButtonHandler = async (event) => {
     event.preventDefault();
     if (event.target.hasAttribute("cancel-id")) {
         const blog_id = event.target.getAttribute("blog-id");
-        document.location.replace("/blogs/${blog_id}")
+        document.location.replace(`/blogs/${blog_id}`)
     }
 };
 
@@ -50,7 +50,7 @@ const updateCommentHandler = async (event) => {
         const description = document.querySelector("#comment-desc").value.trim();
         const blog_id = event.target.getAttribute("blog-id");
         if (description) {
-            const response = await fetch("/api/comments/${id}", {
+            const response = await fetch(`/api/comments/${id}`, {
                 method: "PUT",
                 body: JSON.stringify({ description }),
                 headers: {
@@ -58,7 +58,7 @@ const updateCommentHandler = async (event) => {
                 },
             });
             if(response.ok) {
-                document.location.replace("/blog/${blog_id}");
+                document.location.replace(`/blog/${blog_id}`);
             } else {
                 alert ("Fail to update content.")
             }
