@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
         res.render("homepage", {
             blogs,
             logged_in: req.session.logged_in,
-            logged_id: req.session.logged_id,
+            logged_id: req.session.user_id,
         });
 
     } catch (err) {
@@ -54,7 +54,7 @@ router.get("/blogs/:id", withAuth, async (req, res) => {
             ...blog,
             comment,
             logged_in: req.session.logged_in,
-            logged_id: req.session.logged_id,
+            logged_id: req.session.user_id,
         });
     } catch (err) {
         res.status(500).json(err)
@@ -98,7 +98,7 @@ router.get("/update-comment/:id", withAuth, async (req, res) => {
             ...blog,
             comments,
             logged_in: req.session.logged_in,
-            logged_id: req.session.logged_id,
+            logged_id: req.session.user_id,
             comment_id,
         });
     } catch (err) {
@@ -110,20 +110,20 @@ router.get("/dashboard", withAuth, async (req, res) => {
     try {
         if (req.session.logged_in) {
             const userData = await User.findOne({
-                where: { id: req.session.logged_id},
+                where: { id: req.session.user_id},
             });
             const blogData = await Blogpost.findAll({
                 include: [
                     {
                         model: User,
                         attributes: ["name"],
-                        where: { id: req.session.logged_id},
+                        where: { id: req.session.user_id},
                     },
                 ],
             });
             const blogs = blogData.map((blog) => blog.get({ plain: true }));
             const user = userData.get({ plain: true });
-            res.prependListener("dashboard", {
+            res.render("dashboard", {
                 blogs,
                 logged_in: req.session.logged_in,
                 user,
@@ -142,7 +142,7 @@ router.get("/update-blog/:id", withAuth, async (req, res) => {
     try {
         if (req.session.logged_in) {
             const userData = await User.findOne({
-                where: { id: req.session.logged_id },
+                where: { id: req.session.user_id },
             });
 
             const blogData = await Blogpost.findOne({
@@ -151,7 +151,7 @@ router.get("/update-blog/:id", withAuth, async (req, res) => {
                     {
                         model: User,
                         attributes: ["name"],
-                        where: { id: req.session.logged_id },
+                        where: { id: req.session.user_id },
                     },
                 ],
             });

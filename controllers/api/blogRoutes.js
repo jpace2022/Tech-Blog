@@ -6,7 +6,7 @@ router.post('/', withAuth, async (req, res) => {
   try {
     const newBlog = await Blogpost.create({
         ...req.body,
-        user_id: req.session.logged_id,
+        user_id: req.session.user_id,
     });
 
       res.status(200).json(newBlog);
@@ -27,7 +27,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     const blogData = await Blogpost.destroy({
         where: {
             id: req.params.id,
-            user_id: req.sessionStore.logged_id,
+            user_id: req.sessionStore.user_id,
         },
     });
 
@@ -52,7 +52,7 @@ router.put('/:id', withAuth, async (req, res) => {
         {
           where: {
             id: req.params.id,
-            user_id: req.session.logged_id,
+            user_id: req.session.user_id,
           },
         }
       );
