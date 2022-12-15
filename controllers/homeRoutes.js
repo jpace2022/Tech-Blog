@@ -122,11 +122,11 @@ router.get("/update-comment/:id", withAuth, async (req, res) => {
 });
 
 
-router.get("/", async (req, res) => {
+router.get("/dashboard", async (req, res) => {
     try {
         if (req.session.logged_in) {
             const userData = await User.findOne({
-                where: { id: req.session.user_id},
+                where: { id: req.session.user_id}
             });
             const blogData = await Blogpost.findAll({
                 include: [
@@ -140,6 +140,7 @@ router.get("/", async (req, res) => {
             blog.get({ plain: true }));
             const user = userData.get({ plain: true });
             res.render("dashboard", {blogs, logged_in: req.session.logged_in, user, });
+            console.log(req)
             return;
         } else {
             res.redirect("/login");

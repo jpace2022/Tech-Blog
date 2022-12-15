@@ -72,7 +72,7 @@ const delButtonHandler = async (event) => {
     }
 };
 
-if (document.querySelector(".blog-list") != null)
+if (document.querySelector(".new-blog-form") != null)
 document.querySelector(".new-blog-form").addEventlistener("submit", newFormHandler); 
 
 if (document.querySelector(".blog-list") != null)
