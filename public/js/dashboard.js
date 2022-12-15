@@ -2,10 +2,10 @@ const newFormHandler = async (event) => {
     event.preventDefault();
 
     const name = document
-    .querySelector("#blog-name").value.trim();
+    .querySelector("#blog-name").value;
 
     const description = document
-    .querySelector("#blog-desc").value.trim();
+    .querySelector("#blog-desc").value;
 
  const cancelButtonHandler = async (event) => {
     event.preventDefault();
@@ -33,8 +33,8 @@ const updateBlogHandler = async (event) => {
     event.preventDefault();
     if (event.target.hasAttribute("updoot-id")) {
         const id = event.target.getAttribute("updoot-id");
-        const description = document.querySelector("#update-desc").value.trim();
-        const name = document.querySelector("#update-name").value.trim();
+        const description = document.querySelector("#update-desc").value;
+        const name = document.querySelector("#update-name").value
 
     if(description && name) {
         const response = await fetch(`/api/blogs/${id}`, {
@@ -74,11 +74,11 @@ const delButtonHandler = async (event) => {
 };
 
 if (document.querySelector(".new-blog-form") != null)
-document.querySelector(".new-blog-form").addEventlistener("submit", newFormHandler); 
+document.querySelector(".new-blog-form").addEventListener("submit", newFormHandler); 
 console.log(newFormHandler)
 
 if (document.querySelector(".blog-list") != null)
-document.querySelector(".blog-list").addEventlistener("click", delButtonHandler); 
+document.querySelector(".blog-list").addEventListener("click", delButtonHandler); 
 
 if (document.querySelector(".update-blog-form") != null)
-document.querySelector("update-blog-form").addEventlistener("submit", updateBlogHandler); 
+document.querySelector("update-blog-form").addEventListener("submit", updateBlogHandler); 
