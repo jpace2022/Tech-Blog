@@ -1,9 +1,17 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
 
-    const name = document.querySelector("#blog-name").vlaue.trim();
-    const description = document.querySelector("#blog-desc").value.trim();
- 
+    const name = document
+    .querySelector("#blog-name").value.trim();
+
+    const description = document
+    .querySelector("#blog-desc").value.trim();
+
+ const cancelButtonHandler = async (event) => {
+    event.preventDefault();
+        document.location.replace(`/dashboard`)
+    }
+
 if (name && description) {
             const response = await fetch("/api/blogs", {
                 method: "POST",
@@ -13,20 +21,13 @@ if (name && description) {
                 },
             });
             if(response.ok) {
-                document.location.replace(`/blog/${blog_id}`);
+                document.location.replace(`/dashboard`);
             } else {
                 alert ("Fail to create content.")
             
         }
     }
 };  
-
- const cancelButtonHandler = async (event) => {
-    event.preventDefault();
-    if (event.target.hasAttribute("cancel-id")) {
-        document.location.replace(`/dashboard`)
-    }
-};
 
 const updateBlogHandler = async (event) => {
     event.preventDefault();
@@ -74,6 +75,7 @@ const delButtonHandler = async (event) => {
 
 if (document.querySelector(".new-blog-form") != null)
 document.querySelector(".new-blog-form").addEventlistener("submit", newFormHandler); 
+console.log(newFormHandler)
 
 if (document.querySelector(".blog-list") != null)
 document.querySelector(".blog-list").addEventlistener("click", delButtonHandler); 

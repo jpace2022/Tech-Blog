@@ -9,7 +9,7 @@
     <h3>Update Blog: {{name}}</h3>
     <form class='form update-blog-form' updoot-id='{{id}}'>
       <div class='form-group'>
-        <label for='update-name'>updated blog name:</label>
+        <label for='update-name'>Updated Blog Name:</label>
         <input
           class='form-input'
           type='text'
@@ -19,24 +19,24 @@
         />
       </div>
       <div class='form-group'>
-        <label for='update-desc'>updated description:</label>
+        <label for='update-desc'>Updated Description:</label>
         <textarea
           class='form-input'
           id='update-desc'
           name='update-desc'
         >{{description}}</textarea>
       </div>
-      <div class='form-group'>
-        <button type='submit' class='btn btn-primary'>UPDATE</button>
+      <div class='form-group form-check'>
+        <button type='submit' class=' btn-primary'>UPDATE</button>
       </div>
     </form>
   </div>
 
   <div class='col-md-4'>
-    <button class='btn btn-sm btn-danger' data-id='{{blog.id}}'>DELETE</button>
+    <button class=' btn-sm btn-danger' data-id='{{blog.id}}'>DELETE</button>
     <a href='/dashboard'>
       <button
-        class='btn btn-sm btn-primary cancel-button'
+        class=' btn-sm btn-primary cancel-button'
         cancel-id='{{comment.id}}'
       >CANCEL</button>
     </a>
