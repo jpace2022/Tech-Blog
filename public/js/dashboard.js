@@ -12,10 +12,11 @@ if (name && description) {
                     "Content-Type": "application/json",
                 },
             });
-        if(response.ok) {
-            document.location.replace(`/blog/${blog_id}`);
-        } else {
-            alert ("Fail to create content.")
+            if(response.ok) {
+                document.location.replace(`/blog/${blog_id}`);
+            } else {
+                alert ("Fail to create content.")
+            
         }
     }
 };  

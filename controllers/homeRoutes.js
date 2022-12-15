@@ -5,35 +5,41 @@ const withAuth = require("../utils/auth");
 router.get("/", async (req, res) => {
     try {
         const blogData = await Blogpost.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: ["name"],
-                },
-            ],
+        include: [{
+        model: User,
+        attributes: ["name"]
+            }]
         });
-
         const blogs = blogData.map((blog) => blog.get({ plain: true}));
         res.render("homepage", {
             blogs,
-            logged_in: req.session.logged_in,
-            logged_id: req.session.user_id,
+            loggedIn: req.session.logged_in
         });
-
     } catch (err) {
         res.status(500).json(err);
     }
 })
 
-router.get("/blogs/:id", withAuth, async (req, res) => {
+router.get("/login", (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect("/");
+        return;
+    }
+    res.render("login");
+
+});
+
+router.get("/blogs/:id", async (req, res) => {
+    if (req.session.loggedIn = false ) {
+    } else {
     try {
         const blogData = await Blogpost.findByPk(req.params.id, {
             include: [
                 {
-                    model: User,
-                    attributes: ["name"],
-                },
-            ],
+                model: User,
+                attributes: ["name"]
+                }
+            ]
         });
         const commentData = await comment.findAll({
           include: [
@@ -41,23 +47,32 @@ router.get("/blogs/:id", withAuth, async (req, res) => {
                 model: User,
                 attributes: ["name"],
             },
-          ],
-          where: {
-            blog_id: req.params.id,
-          },  
+            {
+                model: Comment,
+                include: {
+                    model: User,
+                    attributes: ["name"],
+                } 
+            },
+          ], 
         });
-
+        
         const commments = commentData.map((comment) => comment.get({ plain: true}));
+
+     if (blogData) {
 
         const blog = blogData.get({ plain: true });
         res.render("blogpost", {
-            ...blog,
-            comment,
+            blog,
             logged_in: req.session.logged_in,
-            logged_id: req.session.user_id,
         });
-    } catch (err) {
+    } else {
+        res.status(404).json({message: "No post found!"})
+    } 
+} catch (err) {
         res.status(500).json(err)
+
+      }  
     }
 });
 
@@ -106,7 +121,8 @@ router.get("/update-comment/:id", withAuth, async (req, res) => {
     }
 });
 
-router.get("/dashboard", withAuth, async (req, res) => {
+
+router.get("/", async (req, res) => {
     try {
         if (req.session.logged_in) {
             const userData = await User.findOne({
@@ -116,18 +132,14 @@ router.get("/dashboard", withAuth, async (req, res) => {
                 include: [
                     {
                         model: User,
-                        attributes: ["name"],
-                        where: { id: req.session.user_id},
+                        attributes: ["name"]
                     },
                 ],
             });
-            const blogs = blogData.map((blog) => blog.get({ plain: true }));
+            const blogs = blogData.map((blog) =>
+            blog.get({ plain: true }));
             const user = userData.get({ plain: true });
-            res.render("dashboard", {
-                blogs,
-                logged_in: req.session.logged_in,
-                user,
-            });
+            res.render("dashboard", {blogs, logged_in: req.session.logged_in, user, });
             return;
         } else {
             res.redirect("/login");
@@ -150,8 +162,7 @@ router.get("/update-blog/:id", withAuth, async (req, res) => {
                 include: [
                     {
                         model: User,
-                        attributes: ["name"],
-                        where: { id: req.session.user_id },
+                        attributes: ["name"]
                     },
                 ],
             });
@@ -173,13 +184,6 @@ router.get("/update-blog/:id", withAuth, async (req, res) => {
     }
 });
 
-router.get("/login", (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect("/dashboard");
-        return;
-    }
-    res.render("login");
 
-});
 
 module.exports = router;
