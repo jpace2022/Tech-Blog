@@ -1,19 +1,12 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
-
     const name = document
     .querySelector("#blog-name").value;
-
     const description = document
     .querySelector("#blog-desc").value;
 
- const cancelButtonHandler = async (event) => {
-    event.preventDefault();
-        document.location.replace(`/dashboard`)
-    }
-
-if (name && description) {
-            const response = await fetch("/api/blogs", {
+if (name.length > 0 && description.length) {
+const response = await fetch("/api/blogs", {
                 method: "POST",
                 body: JSON.stringify({ name, description }),
                 headers: {
@@ -29,6 +22,11 @@ if (name && description) {
     }
 };  
 
+const cancelButtonHandler = async (event) => {
+    event.preventDefault();
+        document.location.replace(`/dashboard`)
+    }
+
 const updateBlogHandler = async (event) => {
     event.preventDefault();
     if (event.target.hasAttribute("updoot-id")) {
@@ -36,7 +34,7 @@ const updateBlogHandler = async (event) => {
         const description = document.querySelector("#update-desc").value;
         const name = document.querySelector("#update-name").value
 
-    if(description && name) {
+    if(name.length > 0 && description.length) {
         const response = await fetch(`/api/blogs/${id}`, {
             method: "PUT",
             body: JSON.stringify({ description, name }),

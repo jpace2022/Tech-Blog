@@ -30,20 +30,17 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/blogs/:id", async (req, res) => {
-    if (req.session.loggedIn = false ) {
+    if (req.session.logged_in = false ) {
     } else {
     try {
         const blogData = await Blogpost.findByPk(req.params.id, {
-            include: [
-                {
+            include: [{
                 model: User,
                 attributes: ["name"]
-                }
-            ]
+                }]
         });
-        const commentData = await comment.findAll({
-          include: [
-            {
+        const commentData = await Comment.findAll({
+          include: [{
                 model: User,
                 attributes: ["name"],
             },
@@ -53,18 +50,20 @@ router.get("/blogs/:id", async (req, res) => {
                     model: User,
                     attributes: ["name"],
                 } 
-            },
-          ], 
+            }],
         });
         
-        const commments = commentData.map((comment) => comment.get({ plain: true}));
+        const comments = commentData.map((comment) => 
+        comment.get({ plain: true}));
 
      if (blogData) {
+         console.log(blogData)
 
         const blog = blogData.get({ plain: true });
         res.render("blogpost", {
             blog,
-            logged_in: req.session.logged_in,
+            comments,
+            logged_in: req.session.logged_in
         });
     } else {
         res.status(404).json({message: "No post found!"})
