@@ -1,8 +1,6 @@
-<div class='row'>
   <div class='col-auto'>
-    <h2>Welcome, {{user.name}}!</h2>
+    <h2>Welcome to the Dashboard, {{user.name}}!</h2>
   </div>
-</div>
 
 <div class='row mt-4'>
   <div class='col-md-6'>
@@ -34,16 +32,10 @@
             <h4><a href='/blogs/{{blog.id}}'>{{blog.name}}</a></h4>
           </div>
           <div class='col-md-4'>
-            <button
-              class=' btn-sm btn-danger'
-              data-id='{{blog.id}}'
-            >DELETE</button>
+            <button class=' btn-sm btn-danger' data-id='{{blog.id}}' >DELETE</button>
                 <button
                 onclick="location.href='/update-blog/{{blog.id}}'"
-                class=' btn-sm btn-info'
-                button-id='{{comment.id}}'
-                blog-id='{{../id}}'
-                >UPDATE</button>
+                class=' btn-sm btn-info' button-id='{{comment.id}}' blog-id='{{../id}}' >UPDATE</button>
           </div>
         </div>
       {{/each}}

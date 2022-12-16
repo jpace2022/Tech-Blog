@@ -57,6 +57,7 @@ const delButtonHandler = async (event) => {
             document.location.replace(`/dashboard`);
         } else {
             alert ("Fail to delete content.")
+            console.log(response)
             
         }
     }
