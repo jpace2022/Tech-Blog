@@ -67,12 +67,12 @@ The following animation demonstrates the application functionality:
    [Tech-Blog (https://github.com/jpace2022/Tech-Blog.git)] 
 
 ## Deployed Link
-   [Tech-Blog (https://jptech-blog.herokuapp.com/)] 
+   [Tech-Blog (https://jptech-blog.herokuapp.com//)] 
 
 ## Contact
     For any questions or concerns, contact me at my email: pacej2022@gmail.com
 
 ## Image Link
-![Tech-Blog](https://github.com/jpace2022/Tech-Blog/blob/main/Assets/Login%20signup%20page.png?raw=true)
-![Tech-Blog](https://github.com/jpace2022/Tech-Blog/blob/main/Assets/Blog%20posts.png?raw=true)
+![Tech-Blog](#)
+![Tech-Blog](#)
 ![Tech-Blog](#)
