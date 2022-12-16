@@ -49,7 +49,6 @@ const delButtonHandler = async (event) => {
         const id = event.target.getAttribute("data-id");
         const response = await fetch(`/api/blogs/${id}`, {
             method: "DELETE",
-            body: JSON.stringify({ description }),
             headers: {
                 "Content-Type": "application/json",
             },
