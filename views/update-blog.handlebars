@@ -7,7 +7,7 @@
 <div class='row mt-4'>
   <div class='col-md-6'>
     <h3>Update Blog: {{name}}</h3>
-    <form class='form update-blog-form' updoot-id='{{id}}'>
+    <form class='form update-blog-form' update-id='{{id}}'>
       <div class='form-group'>
         <label for='update-name'>Updated Blog Name:</label>
         <input
@@ -15,7 +15,7 @@
           type='text'
           id='update-name'
           name='update-name'
-          value='{{name}}'
+          value='{{blog.name}}'
         />
       </div>
       <div class='form-group'>
@@ -24,7 +24,7 @@
           class='form-input'
           id='update-desc'
           name='update-desc'
-        >{{description}}</textarea>
+        >{{blog.description}}</textarea>
       </div>
       <div class='form-group form-check'>
         <button type='submit' class=' btn-primary'>UPDATE</button>

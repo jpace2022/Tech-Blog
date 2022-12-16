@@ -6,6 +6,7 @@ const newFormHandler = async (event) => {
     .querySelector("#blog-desc").value;
 
 if (name.length > 0 && description.length) {
+
 const response = await fetch("/api/blogs", {
                 method: "POST",
                 body: JSON.stringify({ name, description }),
@@ -80,3 +81,4 @@ document.querySelector(".blog-list").addEventListener("click", delButtonHandler)
 
 if (document.querySelector(".update-blog-form") != null)
 document.querySelector("update-blog-form").addEventListener("submit", updateBlogHandler); 
+

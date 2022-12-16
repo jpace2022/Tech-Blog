@@ -41,12 +41,12 @@ router.get("/blogs/:id", async (req, res) => {
             },
             {
               model: Comment,
-  
+              
               include: [
-                {
-                  model: User,
-                  attributes: ["name"],
-                },
+                  {
+                      model: User,
+                      attributes: ["name"],
+                    },
               ],
             },
           ],
