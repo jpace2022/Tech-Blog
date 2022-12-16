@@ -30,8 +30,8 @@ const cancelButtonHandler = async (event) => {
 
 const updateBlogHandler = async (event) => {
     event.preventDefault();
-    if (event.target.hasAttribute("updoot-id")) {
-        const id = event.target.getAttribute("updoot-id");
+    if (event.target.hasAttribute("update-id")) {
+        const id = event.target.getAttribute("update-id");
         const description = document.querySelector("#update-desc").value;
         const name = document.querySelector("#update-name").value
 
@@ -74,11 +74,11 @@ const delButtonHandler = async (event) => {
 
 if (document.querySelector(".new-blog-form") != null)
 document.querySelector(".new-blog-form").addEventListener("submit", newFormHandler); 
-console.log(newFormHandler)
+
 
 if (document.querySelector(".blog-list") != null)
 document.querySelector(".blog-list").addEventListener("click", delButtonHandler); 
 
-if (document.querySelector(".update-blog-form") != null)
+if (document.querySelector("update-blog-form") != null)
 document.querySelector("update-blog-form").addEventListener("submit", updateBlogHandler); 
 

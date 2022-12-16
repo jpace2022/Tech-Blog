@@ -145,7 +145,7 @@ router.get("/dashboard", async (req, res) => {
     }
 });
 
-router.get("/update-blog/:id", withAuth, async (req, res) => {
+router.get("/update-blog/:id", async (req, res) => {
     try {
         if (req.session.logged_in) {
             const userData = await User.findOne({
@@ -163,9 +163,10 @@ router.get("/update-blog/:id", withAuth, async (req, res) => {
             });
 
             const blog = blogData.get({ plain: true });
+            console.log(blogData)
             const user = userData.get({ plain: true});
             res.render("update-blog", {
-                ...blog,
+                blog,
                 logged_in: req.session.logged_in,
                 user,
             });
@@ -177,6 +178,7 @@ router.get("/update-blog/:id", withAuth, async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+    console.log(blogData)
 });
 
 
