@@ -30,50 +30,45 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/blogs/:id", async (req, res) => {
-    if (req.session.logged_in = false ) {
+    if ((req.session.logged_in = false)) {
     } else {
-    try {
+      try {
         const blogData = await Blogpost.findByPk(req.params.id, {
-            include: [{
-                model: User,
-                attributes: ["name"]
-                }]
-        });
-        const commentData = await Comment.findAll({
-          include: [{
-                model: User,
-                attributes: ["name"],
+          include: [
+            {
+              model: User,
+              attributes: ["name"],
             },
             {
-                model: Comment,
-                include: {
-                    model: User,
-                    attributes: ["name"],
-                } 
-            }],
+              model: Comment,
+  
+              include: [
+                {
+                  model: User,
+                  attributes: ["name"],
+                },
+              ],
+            },
+          ],
         });
-        
-        const comments = commentData.map((comment) => 
-        comment.get({ plain: true}));
-
-     if (blogData) {
-         console.log(blogData)
-
-        const blog = blogData.get({ plain: true });
-        res.render("blogpost", {
+  
+        if (blogData) {
+          console.log(blogData);
+  
+          const blog = blogData.get({ plain: true });
+          res.render("update-blog", {
             blog,
-            comments,
-            logged_in: req.session.logged_in
-        });
-    } else {
-        res.status(404).json({message: "No post found!"})
-    } 
-} catch (err) {
-        res.status(500).json(err)
-
-      }  
+            // comments,
+            // logged_in: req.session.logged_in
+          });
+        } else {
+          res.status(404).json({ message: "No post found!" });
+        }
+      } catch (err) {
+        res.status(500).json(err);
+      }
     }
-});
+  });
 
 router.get("/update-comment/:id", withAuth, async (req, res) => {
     try {
