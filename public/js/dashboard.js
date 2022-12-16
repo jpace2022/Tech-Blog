@@ -37,16 +37,16 @@ const updateBlogHandler = async (event) => {
     if(name.length > 0 && description.length) {
         const response = await fetch(`/api/blogs/${id}`, {
             method: "PUT",
-            body: JSON.stringify({ description, name }),
+            body: JSON.stringify({ name, description  }),
             header: { "Content-Type": "application/json"},
-    });
+        });
+        console.log(response)
         if (response.ok) { document.location.replace(`/dashboard`);    
       } else alert ("Fail to update content.")     
   } else {
     alert ("Name and discription are needed!")
   }
 };   
-
 
 const delButtonHandler = async (event) => {
     if (event.target.hasAttribute("data-id")) {
@@ -74,6 +74,6 @@ document.querySelector(".new-blog-form").addEventListener("submit", newFormHandl
 if (document.querySelector(".blog-list") != null)
 document.querySelector(".blog-list").addEventListener("click", delButtonHandler); 
 
-if (document.querySelector("update-blog-form") != null)
-document.querySelector("update-blog-form").addEventListener("submit", updateBlogHandler); 
+if (document.getElementById("updateButton") != null)
+document.getElementById("updateButton").addEventListener("click", updateBlogHandler); 
 
