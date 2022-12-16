@@ -27,7 +27,6 @@ router.delete('/:id', async (req, res) => {
     const blogData = await Blogpost.destroy({
         where: {
             id: req.params.id,
-            user_id: req.sessionStore.user_id,
         },
     });
 
@@ -43,28 +42,27 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-    try {
-      console.log(blogData);
-      const blogData = await Blogpost.update(
-        {
-          description: req.body.description,
-          name: req.body.name,
+  try {
+    const blogData = await Blogpost.update(
+      {
+        description: req.body.description,
+        name: req.body.name,
+      },
+      {
+        where: {
+          id: req.params.id,
         },
-        {
-          where: {
-            id: req.params.id,
-            user_id: req.session.logged_id,
-          },
-        }
-      );
-      if (!blogData) {
-        res.status(404).json({ message: 'No blog found with this id!' });
-        return;
       }
-      res.status(200).json(blogData);
-    } catch (err) {
-      res.status(500).json(err);
+    );
+    console.log(blogData);
+    if (!blogData) {
+      res.status(404).json({ message: 'No blog found with this id!' });
+      return;
     }
-  });
+    res.status(200).end();
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

@@ -28,25 +28,21 @@ const cancelButtonHandler = async (event) => {
         document.location.replace(`/dashboard`)
     }
 
-const updateBlogHandler = async (event) => {
-    event.preventDefault();
-        const id = event.target.getAttribute("update-id");
-        const description = document.querySelector("#update-desc").value;
-        const name = document.querySelector("#update-name").value
-
-    if(name.length > 0 && description.length) {
-        const response = await fetch(`/api/blogs/${id}`, {
-            method: "PUT",
-            body: JSON.stringify({ name, description  }),
-            header: { "Content-Type": "application/json"},
-        });
-        console.log(response)
-        if (response.ok) { document.location.replace(`/dashboard`);    
-      } else alert ("Fail to update content.")     
-  } else {
-    alert ("Name and discription are needed!")
-  }
-};   
+    const updateBlogHandler = async (event) => {
+        event.preventDefault();
+            const id = event.target.getAttribute("update-id");
+            const description = document.querySelector("#update-desc").value;
+            const name = document.querySelector("#update-name").value
+    
+            await fetch(`/api/blogs/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({ 
+                    name, 
+                    description 
+                }),
+                headers: { "Content-Type": "application/json"},
+            });
+    };        
 
 const delButtonHandler = async (event) => {
     if (event.target.hasAttribute("data-id")) {
