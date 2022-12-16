@@ -4,41 +4,33 @@
   </div>
 </div>
 
-<div class='row mt-4'>
+<div class='mb-3'>
   <div class='col-md-6'>
     <h3>Update Blog: {{name}}</h3>
     <form class='form update-blog-form' update-id='{{id}}'>
       <div class='form-group'>
         <label for='update-name'>Updated Blog Name:</label>
-        <input
-          class='form-input form-control-lg'
-          type='text'
-          id='update-name'
-          name='update-name'
-          value='{{blog.name}}'
-        />
+        <input class="form-control" id="exampleFormControlTextarea1" rows="3" type='text' 
+        id='update-name' name='update-name' value='{{blog.name}}' />
       </div>
       <div class='form-group'>
         <label for='update-desc'>Updated Description:</label>
         <textarea
-          class='form-input form-control-lg'
-          id='update-desc'
-          name='update-desc'
-        >{{blog.description}}</textarea>
+          class="form-control" id="exampleFormControlTextarea1" rows="3" 
+          id='update-desc' name='update-desc'>{{blog.description}}
+        </textarea>
       </div>
       <div class='form-group form-check'>
-        <button type='submit' id="updateButton"  update-id={{blog.id}} class=' btn-primary'>UPDATE</button>
+        <button type='submit' class="btn btn-outline-success" id="updateButton"  update-id={{blog.id}} class=' btn-primary'>UPDATE</button>
       </div>
     </form>
   </div>
 
  <div class='col-md-4'>
-    <button class=' btn-sm btn-danger' id="deleteButton" data-id='{{blog.id}}'>DELETE</button>
+    <button class="btn btn-outline-danger" id="deleteButton" data-id='{{blog.id}}'>DELETE</button>
     <a href='/dashboard'>
-      <button
-        class=' btn-sm btn-primary cancel-button'
-        cancel-id='{{comment.id}}'
-      >CANCEL</button>
+      <button class="btn btn-outline-warning" 
+      cancel-id='{{comment.id}}'>CANCEL</button>
     </a>
   </div>
 </div>
