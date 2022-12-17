@@ -59,20 +59,19 @@ You will need MySQL installed to your computer and also have express-handlebars,
 ## Test
    N/A
 ## Mock Up
-The following animation demonstrates the application functionality:
-
-![Animation cycles through signing into the app, clicking on buttons, and updating blog posts.](./Assets/14-mvc-homework-demo-01.gif) 
+   N/A
 
 ## GitHub Repo
    [Tech-Blog (https://github.com/jpace2022/Tech-Blog.git)] 
 
 ## Deployed Link
-   [Tech-Blog (https://jptech-blog.herokuapp.com//)] 
+   [Tech-Blog (https://jptech-blog.herokuapp.com/)] 
 
 ## Contact
     For any questions or concerns, contact me at my email: pacej2022@gmail.com
 
 ## Image Link
-![Tech-Blog](#)
-![Tech-Blog](#)
-![Tech-Blog](#)
+![Tech-Blog](https://github.com/jpace2022/Tech-Blog/blob/main/Assets/Dashboard.png?raw=true)
+![Tech-Blog](https://github.com/jpace2022/Tech-Blog/blob/main/Assets/Homepage.png?raw=true)
+![Tech-Blog](https://github.com/jpace2022/Tech-Blog/blob/main/Assets/Login%20signup%20page.png?raw=true)
+![Tech-Blog](https://github.com/jpace2022/Tech-Blog/blob/main/Assets/Update.png?raw=true)
