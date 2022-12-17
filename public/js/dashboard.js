@@ -4,6 +4,7 @@ const newFormHandler = async (event) => {
     .querySelector("#blog-name").value;
     const description = document
     .querySelector("#blog-desc").value;
+    console.log(name, description)
 
 if (name.length > 0 && description.length) {
 
