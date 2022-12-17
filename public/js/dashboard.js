@@ -63,8 +63,9 @@ const delButtonHandler = async (event) => {
     }
 };
 
-if (document.querySelector(".new-blog-form") != null)
+if (document.querySelector(".new-blog-form") != null) {
 document.querySelector(".new-blog-form").addEventListener("submit", newFormHandler); 
+}
 
 if (document.getElementById("deleteButton") != null)
 document.getElementById("deleteButton").addEventListener("click", delButtonHandler); 
