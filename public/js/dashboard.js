@@ -70,6 +70,9 @@ document.querySelector(".new-blog-form").addEventListener("submit", newFormHandl
 if (document.getElementById("deleteButton") != null)
 document.getElementById("deleteButton").addEventListener("click", delButtonHandler); 
 
+if (document.getElementById("createButton") != null)
+document.getElementById("createButton").addEventListener("click", delButtonHandler);
+
 if (document.querySelector(".blog-list") != null)
 document.querySelector(".blog-list").addEventListener("click", delButtonHandler); 
 
